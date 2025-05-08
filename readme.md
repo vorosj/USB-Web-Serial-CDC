@@ -26,7 +26,7 @@ my board: https://www.aliexpress.com/item/1005007564893218.html
 
 select Adafruit Feather ESP32 S3 2MB PSRAM in the ide
 
-USB CDC on board enabled
+USB CDC on boot enabled
 
 USB mode: USB OTG(TinyUSB)
 
