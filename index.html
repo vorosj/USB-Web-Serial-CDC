@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LED Vezérlés</title>
+    <style>
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .red-on {
+            background-color: #ff4d4d; /* Világos piros */
+            color: white;
+        }
+
+        .red-off {
+            background-color: #cc0000; /* Sötét piros */
+            color: white;
+        }
+
+        .green-on {
+            background-color: #5cd65c; /* Világos zöld */
+            color: white;
+        }
+
+        .green-off {
+            background-color: #008000; /* Sötét zöld */
+            color: white;
+        }
+
+        .blue-on {
+            background-color: #66b3ff; /* Világos kék */
+            color: white;
+        }
+
+        .blue-off {
+            background-color: #0066cc; /* Sötét kék */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>LED Vezérlés</h1>
+
+    <button id="connectButton">Csatlakozás</button>
+    <button id="redButton" class="red-off">Piros</button>
+    <button id="greenButton" class="green-off">Zöld</button>
+    <button id="blueButton" class="blue-off">Kék</button>
+
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const redButton = document.getElementById('redButton');
+        const greenButton = document.getElementById('greenButton');
+        const blueButton = document.getElementById('blueButton');
+
+        let port;
+        let writer;
+
+        async function connectSerial() {
+            try {
+                port = await navigator.serial.requestPort();
+                await port.open({ baudRate: 9600 }); // Beállítás 9600 baud-ra
+                writer = port.writable.getWriter();
+                console.log('Soros port megnyitva.');
+            } catch (error) {
+                console.error('Hiba a soros port megnyitásakor:', error);
+            }
+        }
+
+        async function sendData(data, button, onClass, offClass) {
+            if (!port || !port.writable) {
+                console.error('A soros port nincs megnyitva vagy nem írható.');
+                return;
+            }
+
+            const encoder = new TextEncoder();
+            try {
+                console.log('Küldött adat:', data);
+                await writer.write(encoder.encode(data));
+                if (data === data.toUpperCase()) {
+                    button.className = onClass;
+                } else {
+                    button.className = offClass;
+                }
+            } catch (error) {
+                console.error('Hiba az adatok küldésekor:', error);
+            }
+        }
+
+        redButton.addEventListener('click', async () => {
+            const currentState = redButton.className.includes('off') ? 'R' : 'r';
+            await sendData(currentState, redButton, 'red-on', 'red-off');
+        });
+
+        greenButton.addEventListener('click', async () => {
+            const currentState = greenButton.className.includes('off') ? 'G' : 'g';
+            await sendData(currentState, greenButton, 'green-on', 'green-off');
+        });
+
+        blueButton.addEventListener('click', async () => {
+            const currentState = blueButton.className.includes('off') ? 'B' : 'b';
+            await sendData(currentState, blueButton, 'blue-on', 'blue-off');
+        });
+
+        connectButton.addEventListener('click', connectSerial);
+    </script>
+</body>
+</html>
