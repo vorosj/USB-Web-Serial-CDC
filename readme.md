@@ -22,7 +22,10 @@ This solution works on any ESP32 board that supports the USB CDC example by Espr
 
 Arduino IDE 2.36
 my board: https://www.aliexpress.com/item/1005007564893218.html
+
 select Adafruit Feather ESP32 S3 2MB PSRAM in the ide
+
 USB CDC on board enabled
+
 USB mode: USB OTG(TinyUSB)
 
