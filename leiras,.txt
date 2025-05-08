@@ -15,5 +15,14 @@ Az adott feladathoz szükséges index.html a hava scripttel a következő módon
 - így bármilyen html&javascript beilleszthető, ami elfér a flash-ben     
 
  A megoldás működik minden olyan ESP32 boardon, amelyen az USB MSC Espressif Arduino példa lefut - kivéve persze a 3 színű Led-et. 
+Arduino IDE 2.36
+
+A boardom: https://www.aliexpress.com/item/1005007564893218.html
+
+Adafruit Feather ESP32 S3 2MB PSRAM az IDE-ben
+
+USB CDC on boot enabled
+
+USB mode: USB OTG(TinyUSB)
 
 
