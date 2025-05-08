@@ -4,7 +4,7 @@ Készítettem egy ESP32 S3 programot, amely USB WEB serial kapcsolatot hoz létr
 
 A példa programom olyan S3 boardon fut, amelyen WS2812 3 színű Led van a 48-as pin-en. A Web lapon 3 gomb van, ezzel lehet kapcsolgatni a Led-eket. Persze ez csak egyszerű példa, könnyen lehet bármilyen tényleges feladathoz módosítani.
 
-A megoldást nehezítette, hogy az ESP32-höz készült, a belső flash-t használni képes fájlrendszerek nem kompatibilisek a FATxx fájlrendszerrel, a PC nem ismeri fel ezeket. Ezt a problémát az Arduino Examples/USB/CDC példában úgy oldották meg, hogy egy statikus FAT12 képet hoztak létre, amely olyan, mint egy valódi fájlrendszer a memóriában. 
+A megoldást nehezítette, hogy az ESP32-höz készült, a belső flash-t használni képes fájlrendszerek nem kompatibilisek a FATxx fájlrendszerrel, a PC nem ismeri fel ezeket. Ezt a problémát az Arduino Examples/USB/MSC példában úgy oldották meg, hogy egy statikus FAT12 képet hoztak létre, amely olyan, mint egy valódi fájlrendszer a memóriában. 
 
 Ezt a programot alakítottam át úgy, hogy a feladathoz szükséges .html fájlt tartalmazó statikus kép kerüljön a helyére. A .html fájl tartalmazza azt a java scriptet, amely aztán Web Serial kapcsolatot hoz létre. 
 
@@ -14,6 +14,6 @@ Az adott feladathoz szükséges index.html a hava scripttel a következő módon
 - aztán készítettem egy olyan python kódot, ami ezt egy header fájllá alakítja, ez van include-olva a main.c-be
 - így bármilyen html&javascript beilleszthető, ami elfér a flash-ben     
 
- A megoldás működik minden olyan ESP32 boardon, amelyen az USB CDC Espressif példa lefut - kivéve persze a 3 színű Led-et. 
+ A megoldás működik minden olyan ESP32 boardon, amelyen az USB MSC Espressif Arduino példa lefut - kivéve persze a 3 színű Led-et. 
 
-Ha ez a megoldás érdekel valakit, felteszem a netre.
+
