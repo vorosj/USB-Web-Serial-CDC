@@ -20,4 +20,9 @@ This way, any HTML and JavaScript can be embedded as long as it fits in the flas
 
 This solution works on any ESP32 board that supports the USB CDC example by Espressif—except, of course, the RGB LED part, which depends on the specific hardware.
 
-If anyone is interested in this solution, I’m happy to upload it online.
+Arduino IDE 2.36
+my board: https://www.aliexpress.com/item/1005007564893218.html
+select Adafruit Feather ESP32 S3 2MB PSRAM in the ide
+USB CDC on board enabled
+USB mode: USB OTG(TinyUSB)
+
