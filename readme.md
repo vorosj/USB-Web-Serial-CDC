@@ -4,7 +4,7 @@ This setup allows data to be displayed on the web page, the microcontroller (uC)
 
 My example program runs on an S3 board that has a WS2812 RGB LED connected to pin 48. The web page includes three buttons that can toggle the LEDs. Of course, this is just a simple example and can easily be adapted for any real-world application.
 
-One of the challenges was that the filesystems typically used with the ESP32’s internal flash are not compatible with FATxx, so a PC cannot recognize them. This issue was solved in the Arduino Examples/USB/CDC example by creating a static FAT12 image that behaves like a real file system in memory.
+One of the challenges was that the filesystems typically used with the ESP32’s internal flash are not compatible with FATxx, so a PC cannot recognize them. This issue was solved in the Arduino Examples/USB/MSC example by creating a static FAT12 image that behaves like a real file system in memory.
 
 I adapted this approach to include a static image that contains the necessary .html file. The .html file includes the JavaScript that establishes the Web Serial connection.
 
@@ -18,9 +18,10 @@ I then wrote another Python script to convert this image into a header file, whi
 
 This way, any HTML and JavaScript can be embedded as long as it fits in the flash memory.
 
-This solution works on any ESP32 board that supports the USB CDC example by Espressif—except, of course, the RGB LED part, which depends on the specific hardware.
+This solution works on any ESP32 board that supports the USB MSC example by Espressif—except, of course, the RGB LED part, which depends on the specific hardware.
 
 Arduino IDE 2.36
+
 my board: https://www.aliexpress.com/item/1005007564893218.html
 
 select Adafruit Feather ESP32 S3 2MB PSRAM in the ide
